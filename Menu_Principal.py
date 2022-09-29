@@ -9,8 +9,47 @@ print("::: BIENVENIDO A LIBRERIA EVA'S POS :::")
 Usuarios={'master':1234, "gerente":5678}
 Clientes={"Efectivo":0000000}
 inventario={"Libretas": "ESCO01"}
+iva=16/100
 contador= 0
 # Declaramos las funciones secundarias que utlizara el programa
+#Sub-menu productos#
+def reporte_ventas():
+    print('ns')
+
+def nuevas_facturas():
+    print("\t :: FACTURA ::")
+    print("1. REALIZAR NUEVA FACTURA")
+    print("2. SALIR")
+    opcion_fac=int(input("INGRESE EL NUMERO DE SU OPCION: "))
+    if opcion_fac == 1:
+        print("\t::FACTURA::")
+        cliente=(input("Cliente: "))
+        if cliente in Clientes:
+            while cliente in Clientes:
+                producto=(input("-: "))
+                if producto in inventario:
+                    cantidad=float(input("Cantidad: "))
+                    if cantidad<=0:
+                        print("ERROR")
+                        return nuevas_facturas()
+                    else:
+                        precio=float(input("Precio: "))
+                        if precio<=0:   
+                            print("ERROR")
+                            return nuevas_facturas()
+                
+                        else:
+                            print("culo")
+                            return nuevas_facturas()
+                else:   
+                    print("Producto no registrado")
+                    return nuevas_facturas()
+        else:
+            print("Cliente no registrado")
+            return nuevas_facturas()
+
+
+
 def Menu_productos():
     print("\t :: PRODUCTOS ::")
     print("1. ::: Agregar producto :::")
@@ -52,7 +91,7 @@ def Menu_productos():
             return Menu_productos()
     elif opcion_productos == 4:
         return Menu_principal()
-
+#Sub-menu usuarios#
 def Menu_Usuarios(): 
 
     print("\t :: MENU DE USUARIOS ::")
@@ -105,7 +144,7 @@ def Menu_Usuarios():
     
     elif opcion_usuario == 4:
         return Menu_principal()
-
+#Opcion cambios de usuario#
 def CambiodeUsuario():
     global usuario_, clave_
     contador = 0 
@@ -134,7 +173,7 @@ def CambiodeUsuario():
     else:
         print("Clave errada...")
         return Menu_principal()
-
+#Opcion cambios de clave#
 def CambiosdeClave():
     global usuario_, clave_, Usuarios
     print("\t :: CAMBIO DE CLAVES :::")
@@ -174,7 +213,7 @@ def CambiosdeClave():
                 print(f"`{usuario_}` ha cambiado de nombre a `{Confir_username}`")
                 usuario_ = Confir_username
                 return Usuarios, Menu_principal(), usuario_
-
+#Sub-menu clientes#
 def Menu_clientes():
 
     print("\t :: GESTION DE CLIENTES ::")
@@ -220,14 +259,6 @@ def Menu_clientes():
     elif opcion_clientes == 4:
         return Menu_principal()
 
-def Menu_principal():
-    print('\t ::: BIENVENIDO :::')
-    print("\t:: MENÚ PRINCIPAL ::")
-    print("1. ::: ARCHIVO :::")
-    print("2. ::: MOVIMIENTOS :::")
-    print("3. ::: AYUDA :::")
-    print("4. ::: SALIR :::")
-    opcion = int(input("Ingrese el número de su opción: "))
 
 # Luego completamos con una funcion principal que sea capaz de llamar a las demas
 def Menu_principal():
@@ -266,6 +297,17 @@ def Menu_principal():
 
         elif opcion_archivo == 6:
             return Menu_principal()  
+    if opcion == 2:  
+        print("\t :: MOVIMIENTOS ::")
+        print("1. ::: Nueva factura :::")
+        print("2. ::: Reporte de ventas :::")
+        print("3. ::: SALIR :::")    
+        opcion_movimientos=int(input("Ingrese el número de su opción: "))
+        if opcion_movimientos == 1:
+            return nuevas_facturas()
+        elif opcion_movimientos == 2:
+            return reporte_ventas()
+            
 
 # Se declara un ciclo indefinido hasta que el usuario ingrese un usuario y clave validos
 while True:
