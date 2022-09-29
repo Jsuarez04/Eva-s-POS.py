@@ -6,10 +6,53 @@
 
 
 print("::: BIENVENIDO A LIBRERIA EVA'S POS :::")
-Usuarios={"master":1234, "gerente":5678}
+Usuarios={'master':1234, "gerente":5678}
 Clientes={"Efectivo":0000000}
-
+inventario={"Libretas": "ESCO01"}
+contador= 0
 # Declaramos las funciones secundarias que utlizara el programa
+def Menu_productos():
+    print("\t :: PRODUCTOS ::")
+    print("1. ::: Agregar producto :::")
+    print("2. ::: Eliminar de producto :::")
+    print("3. ::: Inventario :::")
+    print("4. ::: SALIR :::")
+    opcion_productos=int(input("Ingrese el número de su opción: "))
+    if opcion_productos==1:
+        print("\t::AGREGAR PRODUCTO::")
+        agg_prod=input("Ingrese el nombre del producto: ")
+        agg_codigo=input("Ingrese el código del producto: ")
+        inventario[agg_prod]= agg_codigo 
+        print("PRODUCTO AGREGADO EXITOSAMENTE")
+        return Menu_productos()
+
+    elif opcion_productos==2:
+        contador=0
+        print("\t::ELIMINAR PRODUCTO::")
+        for key in inventario:
+            contador+=1
+            print(f"{contador}. {key}")
+            opcion_elim_prod = input("Ingrese el nombre o el codigo del producto a eliminar")
+        
+        if opcion_elim_prod in inventario:
+            inventario.pop(opcion_elim_prod)
+            print("\tPRODUCTO ELIMINADO")
+            return Menu_productos
+        else:
+            print("\tPRODUCTO NO REGISTRADO")
+            return Menu_productos
+    elif opcion_productos == 3:
+        print("\t===INVENTARIO===") 
+        print("PRODUCTO  -   CODIGO  ")
+        for key, value in inventario.items():
+                print(f"{key}  \t{value}")
+        
+        Salir= input("Escribe salir para retroceder: ")
+        if Salir == "salir":
+            return Menu_productos()
+    elif opcion_productos == 4:
+        return Menu_principal()
+
 def Menu_Usuarios(): 
 
     print("\t :: MENU DE USUARIOS ::")
@@ -185,25 +228,6 @@ def Menu_principal():
     print("3. ::: AYUDA :::")
     print("4. ::: SALIR :::")
     opcion = int(input("Ingrese el número de su opción: "))
-    
-
-
-    if opcion == 1:
-        print("\t :: ARCHIVO ::")
-        print("1. ::: Usuarios :::")
-        print("2. ::: Clientes :::")
-        print("3. ::: Productos :::")
-        print("4. ::: Cambio de Usuario :::")
-        print("5. ::: Cambio de Clave :::")
-        print("6. ::: Salir :::")
-        opcion_archivo=int(input("Ingrese el número de su opción: "))
-    
-        if opcion_archivo== 1:
-            return Menu_Usuarios()
-        elif opcion_archivo==2:
-            return Menu_clientes()
-        elif opcion_archivo == 6:
-            return Menu_principal()
 
 # Luego completamos con una funcion principal que sea capaz de llamar a las demas
 def Menu_principal():
@@ -230,6 +254,9 @@ def Menu_principal():
         
         elif opcion_archivo == 2:
             return Menu_clientes()
+
+        elif opcion_archivo == 3:
+            return Menu_productos()
 
         elif opcion_archivo == 4:
             return CambiodeUsuario()
