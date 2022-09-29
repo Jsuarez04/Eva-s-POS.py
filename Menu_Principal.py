@@ -5,12 +5,14 @@
 #-SALIR#
 
 
+
 print("::: BIENVENIDO A LIBRERIA EVA'S POS :::")
 Usuarios={'master':1234, "gerente":5678}
 Clientes={"Efectivo":0000000}
 inventario={"Libretas": "ESCO01"}
 iva=16/100
 contador= 0
+montos=[]
 # Declaramos las funciones secundarias que utlizara el programa
 #Sub-menu productos#
 def reporte_ventas():
@@ -21,35 +23,28 @@ def nuevas_facturas():
     print("1. REALIZAR NUEVA FACTURA")
     print("2. SALIR")
     opcion_fac=int(input("INGRESE EL NUMERO DE SU OPCION: "))
+    
     if opcion_fac == 1:
         print("\t::FACTURA::")
         cliente=(input("Cliente: "))
         if cliente in Clientes:
-            while cliente in Clientes:
-                producto=(input("-: "))
+            for fact in range(10000000000000):
+                producto=(input("INGRESE NOMBRE O CODIGO DEL PRODUCTO: "))
                 if producto in inventario:
-                    cantidad=float(input("Cantidad: "))
-                    if cantidad<=0:
-                        print("ERROR")
-                        return nuevas_facturas()
-                    else:
-                        precio=float(input("Precio: "))
-                        if precio<=0:   
-                            print("ERROR")
-                            return nuevas_facturas()
-                
-                        else:
-                            print("culo")
-                            return nuevas_facturas()
-                else:   
-                    print("Producto no registrado")
-                    return nuevas_facturas()
-        else:
-            print("Cliente no registrado")
-            return nuevas_facturas()
+                    cantidad=float(input("CANTIDAD:"))
+                    if cantidad >0:
+                        precio=float(input("PRECIO:"))
+                        if precio > 0:
+                            monto= cantidad * precio
+                            montos.append(monto)
+                imprimir=(input("Escribe print para imprimir la factura: "))
+                if imprimir=='print':
+                    total=(montos) 
+                    fact = total 
+                    print(fact)
+                            
 
-
-
+            
 def Menu_productos():
     print("\t :: PRODUCTOS ::")
     print("1. ::: Agregar producto :::")
