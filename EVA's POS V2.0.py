@@ -9,7 +9,29 @@ inventario={"libreta": {"Codigo":"ESCO01", "Precio":12, "Existencia": 200},
 "sacapuntas de metal":{"Codigo":"ESCO102","Precio":17, "Existencia":94},
 "lapiz unidad":{"Codigo":"ESCO110", "Precio":2.5, "Existencia":281}}
 all_facts={"Venta no contribuyente":0}
+info={}
+iva=16/100
 # Declaramos las funciones secundarias que utlizara el programa
+
+def menu_ayuda():
+    print("\t::AYUDA::")
+    print("1.NOMBRE DEL POS")
+    print("2.DESARROLLADORES")
+    print("3.SALIR")
+    opcion_ayuda=int(input("Ingrese el número de su opcion:  "))
+    if opcion_ayuda == 1:
+        print("\t:::=EVA's POS=:::")
+        salir=input("Escriba la palabra 'SALIR' para volver al menú principal: ")
+        if salir == 'salir':
+            return Menu_principal()
+    if opcion_ayuda ==2:
+        print(info)
+        salir=input("Escriba la palabra 'SALIR' para volver al menú principal: ")
+        if salir == 'salir':
+            return Menu_principal()
+    if opcion_ayuda == 3:
+        return Menu_principal()
+
 def nuevas_facturas():
     Productos = []
     Costo_prod = []
@@ -352,7 +374,9 @@ def Menu_principal():
         elif opcion_movimientos == 2:
             return reporte_ventas()
 
-
+    elif opcion==3:
+        return menu_ayuda()
+        
 # Se declara un ciclo indefinido hasta que el usuario ingrese un usuario y clave validos
 while True:
     usuario_=input("Ingrese su nombre de usuario:")
